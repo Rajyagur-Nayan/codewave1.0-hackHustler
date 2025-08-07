@@ -31,5 +31,6 @@ app.use("/admin", require("./src/routes/admin/dashboard.js"))
 app.use("/profile", require("./src/routes/profile/profile.js"))
 app.use("/form", require("./src/routes/form/form.js"))
 app.use("/farmer/dashboard", require("./src/routes/farmer/deshbord.js"));
+app.use("/sub", require("./src/routes/subsription/subs.js"))
 
 module.exports = app;
