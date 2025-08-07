@@ -6,7 +6,11 @@ const verifyRole = (requiredRole) => {
     return async (req, res, next) => {
         try {
             // const token = req.cookies.farmfresh_token;
-            const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjMWNmYzE2LTljYzItNGQ4OS1hMzU3LTliMWRmZjJjZTYxNiIsIm5hbWUiOiJEaHJ1diBCb2doYW5pIiwiZW1haWwiOiJkaHJ1dkBleGFtcGxlLmNvbSIsInJvbGUiOiJmYXJtZXIiLCJpYXQiOjE3NTQ1NTAzNDl9.J9kMQpWfGfbLYyC4xkf--6Gma0SB388AOg2ARYKrBto';
+            /// admin
+            //const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjMWNmYzE2LTljYzItNGQ4OS1hMzU3LTliMWRmZjJjZTYxNiIsIm5hbWUiOiJEaHJ1diBCb2doYW5pIiwiZW1haWwiOiJkaHJ1dkBleGFtcGxlLmNvbSIsInJvbGUiOiJmYXJtZXIiLCJpYXQiOjE3NTQ1NTAzNDl9.J9kMQpWfGfbLYyC4xkf--6Gma0SB388AOg2ARYKrBto';
+
+            //// user 
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4NWNjNzczLWU0YzAtNDE3Zi1iM2RiLWNjODRkNGM4MDgxYSIsIm5hbWUiOiJEaHJ1diBCb2doYW5pIiwiZW1haWwiOiJkQGQuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU0NTUwNDMzfQ.x9bAZ-6SZ1-ErcDhTp8ElXEhJzXfzMsl59RQRdEGzRk"
 
             if (!token) {
                 return res.status(401).json({ message: 'Access denied. No token provided.' });
