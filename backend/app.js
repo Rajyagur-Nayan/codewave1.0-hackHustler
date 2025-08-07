@@ -29,5 +29,6 @@ app.use("/farmer", require("./src/routes/farmer/form.js"));
 app.use("/chat", require("./src/routes/chat/chat.js"));
 app.use("/admin", require("./src/routes/admin/dashboard.js"))
 app.use("/profile", require("./src/routes/profile/profile.js"))
+app.use("/form", require("./src/routes/form/form.js"))
 
 module.exports = app;
