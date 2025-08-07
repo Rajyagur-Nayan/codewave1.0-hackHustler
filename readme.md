@@ -7,7 +7,7 @@ FarmFresh AI is a **full-stack agriculture platform** built with modern web tech
 
 ```bash
 git clone https://github.com/Rajyagur-Nayan/codewave1.0-hackHustler.git
-cd farmfresh-ai 
+cd project
 cd frontend
 cd backend
 now in both npm install
@@ -34,14 +34,9 @@ and npm run dev
 ## 📸 Screenshots
 
 ### 🔐 Authentication
-<img src="./screenshots/login-form.png" width="400" />
-<img src="./screenshots/signup-form.png" width="400" />
+<img src="./screenshots/signup.png" width="400" />
+<img src="./screenshots/login.png" width="400" />
 
-### 🌽 Add Product Form (Farmer)
-<img src="./screenshots/add-product-form.png" width="400" />
-
-### 🛍️ Product Listing
-<img src="./screenshots/product-listing.png" width="400" />
 
 ---
 
