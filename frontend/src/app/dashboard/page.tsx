@@ -35,7 +35,12 @@ const InventoryPage = () => {
           id: p.id,
           image: p.image_url, // must match your backend field
           name: p.name,
+<<<<<<< HEAD
           price: $${p.price},
+=======
+          category: p.category || "Uncategorized",
+          price: `$${p.price}`,
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
           stock: p.stock,
         }));
 
@@ -85,7 +90,11 @@ const InventoryPage = () => {
           image: res.data.product.image_url,
           name: res.data.product.name,
           category: res.data.product.category || "Uncategorized",
+<<<<<<< HEAD
           price: $${res.data.product.price},
+=======
+          price: `$${res.data.product.price}`,
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
           stock: res.data.product.stock,
         },
       ]);
@@ -220,4 +229,8 @@ const InventoryPage = () => {
   );
 };
 
+<<<<<<< HEAD
 export default InventoryPage;
+=======
+export default InventoryPage;
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5

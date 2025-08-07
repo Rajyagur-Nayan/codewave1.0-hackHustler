@@ -6,14 +6,15 @@ const verifyRole = (requiredRole) => {
     return async (req, res, next) => {
         try {
             // const token = req.cookies.farmfresh_token;
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFkYTYzYjIwLWY0NzAtNGY0ZS05ZWM5LTJhNjBlNjhhNGJhMSIsIm5hbWUiOiJhYWtsYyIsImVtYWlsIjoiZEBzLmNvbSIsInJvbGUiOiJmYXJtZXIiLCJpYXQiOjE3NTQ1NjMzMDV9.bDJ99psNR0KoEx8avHkPvvBsdwFf2mOidckwSZD22_k";
             /// admin
             //const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjMWNmYzE2LTljYzItNGQ4OS1hMzU3LTliMWRmZjJjZTYxNiIsIm5hbWUiOiJEaHJ1diBCb2doYW5pIiwiZW1haWwiOiJkaHJ1dkBleGFtcGxlLmNvbSIsInJvbGUiOiJmYXJtZXIiLCJpYXQiOjE3NTQ1NTAzNDl9.J9kMQpWfGfbLYyC4xkf--6Gma0SB388AOg2ARYKrBto';
 
             //// user 
-           // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4NWNjNzczLWU0YzAtNDE3Zi1iM2RiLWNjODRkNGM4MDgxYSIsIm5hbWUiOiJEaHJ1diBCb2doYW5pIiwiZW1haWwiOiJkQGQuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU0NTUwNDMzfQ.x9bAZ-6SZ1-ErcDhTp8ElXEhJzXfzMsl59RQRdEGzRk"
+        //    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4NWNjNzczLWU0YzAtNDE3Zi1iM2RiLWNjODRkNGM4MDgxYSIsIm5hbWUiOiJEaHJ1diBCb2doYW5pIiwiZW1haWwiOiJkQGQuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU0NTUwNDMzfQ.x9bAZ-6SZ1-ErcDhTp8ElXEhJzXfzMsl59RQRdEGzRk"
             
             //// buyer
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmMzRkNzMyLTNkZGItNDNjYi04ZDM5LTdmNjZkODg4Y2Q4NyIsIm5hbWUiOiJidXllciIsImVtYWlsIjoiY0BjLmNvbSIsInJvbGUiOiJidXllciIsImlhdCI6MTc1NDU1ODEwOH0.YSuWQtNkvSxVmLxJ1lNiesyG_778pUnQ1JvAghZ6EOs"
+            // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVmMzRkNzMyLTNkZGItNDNjYi04ZDM5LTdmNjZkODg4Y2Q4NyIsIm5hbWUiOiJidXllciIsImVtYWlsIjoiY0BjLmNvbSIsInJvbGUiOiJidXllciIsImlhdCI6MTc1NDU1ODEwOH0.YSuWQtNkvSxVmLxJ1lNiesyG_778pUnQ1JvAghZ6EOs"
 
             if (!token) {
                 return res.status(401).json({ message: 'Access denied. No token provided.' });

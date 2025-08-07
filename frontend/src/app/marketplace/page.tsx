@@ -2,7 +2,15 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
+=======
+import {
+  Card,
+  CardContent,
+  CardTitle,
+} from "@/components/ui/card";
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -28,6 +36,7 @@ interface Product {
   farmer_name: string;
 }
 
+<<<<<<< HEAD
 // Dummy fallback data
 const dummyProducts: Product[] = [
   {
@@ -67,6 +76,12 @@ export default function App() {
   const [products, setProducts] = useState<Product[]>(dummyProducts);
 
   // Dark mode logic
+=======
+export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [products, setProducts] = useState<Product[]>([]);
+
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -77,6 +92,7 @@ export default function App() {
 
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
+<<<<<<< HEAD
   // Fetch real data
   useEffect(() => {
     const fetchProducts = async () => {
@@ -87,6 +103,15 @@ export default function App() {
         }
       } catch (err) {
         console.error("Failed to fetch products, using dummy data", err);
+=======
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get("http://localhost:4000/farmer/dashboard"); 
+        setProducts(res.data);
+      } catch (err) {
+        console.error("Failed to fetch products", err);
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
       }
     };
 
@@ -96,7 +121,10 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <main className="flex flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+<<<<<<< HEAD
         {/* Sidebar */}
+=======
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
         <aside className="w-64 hidden lg:block pr-8 border-r dark:border-gray-800">
           <div className="space-y-6">
             {/* Categories */}
@@ -146,7 +174,10 @@ export default function App() {
             </h1>
 
             <div className="flex items-center space-x-4">
+<<<<<<< HEAD
               {/* Filter Button (Mobile Only) */}
+=======
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
               <Button
                 variant="outline"
                 size="sm"
@@ -188,20 +219,32 @@ export default function App() {
               >
                 <div className="relative w-full h-48">
                   <img
+<<<<<<< HEAD
                     src={item.image_url}
+=======
+                    src={`http://localhost:4000/farmer/${item.image_url}`}
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
                     alt={item.name}
                     className="rounded-t-xl w-full h-full object-cover"
                   />
+
                 </div>
                 <CardContent className="p-4 flex flex-col justify-between">
                   <div>
                     <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                       {item.name}
                     </CardTitle>
+<<<<<<< HEAD
                     <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
                       Farmer: {item.farmer_name}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+=======
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                      Farmer: {item.farmer_name}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
                       ₹{item.price}
                     </p>
                   </div>
