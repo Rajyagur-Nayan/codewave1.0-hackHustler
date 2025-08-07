@@ -49,11 +49,7 @@ and npm run dev
 
 | Layer       | Technology                       |
 |------------|-----------------------------------|
-<<<<<<< HEAD
-| Frontend   | Next.js + Tailwind CSS + Vite  |
-=======
-| Frontend   | Next.js + Tailwind CSS + Shadcn   |
->>>>>>> 5748e46075827347808a7b6b64105f7f8376c1ca
+| Frontend   | Next.js + Tailwind CSS + Vite +   |
 | Backend    | Node.js + Express.js              |
 | Database   | PostgreSQL                        |
 | Auth       | JWT (JSON Web Tokens)             |
