@@ -27,14 +27,14 @@ const upload = multer({ storage });
 
 router.post('/add', checkFarmer, upload.single('image'), async (req, res) => {
     try {
-        const { name, price, description, quantity, category } = req.body;  // <-- added category
+        const { name, price, description, quantity } = req.body;  // <-- added category
         const image_url = req.file ? `/uploads/products/${req.file.filename}` : null;
         const farmer_id = req.user.id;
 
         const result = await pool.query(
-            `INSERT INTO products (farmer_id, name, price, description, stock, image_url, category)
+            `INSERT INTO products (farmer_id, name, price, description, stock, image_url)
              VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-            [farmer_id, name, price, description, quantity, image_url, category]
+            [farmer_id, name, price, description, quantity, image_url]
         );
 
         return res.status(201).json({ message: 'Product added successfully', product: result.rows[0] });
