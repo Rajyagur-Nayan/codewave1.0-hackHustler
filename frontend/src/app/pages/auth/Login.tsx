@@ -33,6 +33,7 @@ export function LoginDialog({ onClose }: any) {
       );
 
       toast.success("Login Success");
+      window.location.reload();
     } catch (error) {
       console.log(error);
       toast.error("Login Failed");

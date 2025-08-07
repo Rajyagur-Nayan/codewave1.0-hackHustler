@@ -2,11 +2,15 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+<<<<<<< HEAD
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+=======
 import {
   Card,
   CardContent,
   CardTitle,
 } from "@/components/ui/card";
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -17,6 +21,7 @@ import {
 } from "@/components/ui/select";
 import { Filter } from "lucide-react";
 
+// Dummy categories and tags
 const categories = ["Fruits", "Vegetables", "Dairy", "Meats"];
 const tags = ["Top Selling", "Seasonal Picks"];
 
@@ -31,10 +36,52 @@ interface Product {
   farmer_name: string;
 }
 
+<<<<<<< HEAD
+// Dummy fallback data
+const dummyProducts: Product[] = [
+  {
+    id: 1,
+    name: "Fresh Mangoes",
+    price: "120",
+    description: "Sweet Alphonso mangoes.",
+    stock: 50,
+    image_url: "https://source.unsplash.com/featured/?mango",
+    created_at: "2025-08-01T10:00:00Z",
+    farmer_name: "Amit Patel",
+  },
+  {
+    id: 2,
+    name: "Organic Spinach",
+    price: "40",
+    description: "Fresh pesticide-free spinach.",
+    stock: 100,
+    image_url: "https://source.unsplash.com/featured/?spinach",
+    created_at: "2025-08-02T11:30:00Z",
+    farmer_name: "Meera Singh",
+  },
+  {
+    id: 3,
+    name: "Farm Eggs (12 pcs)",
+    price: "90",
+    description: "Free-range eggs.",
+    stock: 75,
+    image_url: "https://source.unsplash.com/featured/?eggs",
+    created_at: "2025-08-03T14:45:00Z",
+    farmer_name: "Ravi Yadav",
+  },
+];
+
+export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [products, setProducts] = useState<Product[]>(dummyProducts);
+
+  // Dark mode logic
+=======
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
 
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -45,6 +92,18 @@ export default function App() {
 
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
+<<<<<<< HEAD
+  // Fetch real data
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get("http://localhost:4000/farmer/dashboard");
+        if (res.data && Array.isArray(res.data)) {
+          setProducts(res.data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch products, using dummy data", err);
+=======
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -52,6 +111,7 @@ export default function App() {
         setProducts(res.data);
       } catch (err) {
         console.error("Failed to fetch products", err);
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
       }
     };
 
@@ -61,8 +121,13 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <main className="flex flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+<<<<<<< HEAD
+        {/* Sidebar */}
+=======
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
         <aside className="w-64 hidden lg:block pr-8 border-r dark:border-gray-800">
           <div className="space-y-6">
+            {/* Categories */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 CATEGORIES
@@ -79,6 +144,8 @@ export default function App() {
                 ))}
               </ul>
             </div>
+
+            {/* Tags */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 TAGS
@@ -98,13 +165,19 @@ export default function App() {
           </div>
         </aside>
 
-        {/* Product Grid */}
+        {/* Main Product Grid */}
         <div className="flex-1 lg:pl-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-0">
+          {/* Top Bar */}
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">
               Discover Fresh Produce
             </h1>
+
             <div className="flex items-center space-x-4">
+<<<<<<< HEAD
+              {/* Filter Button (Mobile Only) */}
+=======
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
               <Button
                 variant="outline"
                 size="sm"
@@ -113,6 +186,8 @@ export default function App() {
                 <Filter className="h-4 w-4" />
                 <span>Filters</span>
               </Button>
+
+              {/* Sort Dropdown */}
               <div className="flex items-center space-x-2">
                 <span className="text-gray-700 dark:text-gray-300 text-sm">
                   Sort by:
@@ -123,14 +198,19 @@ export default function App() {
                   </SelectTrigger>
                   <SelectContent className="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700">
                     <SelectItem value="recommended">Recommended</SelectItem>
-                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                    <SelectItem value="price-asc">
+                      Price: Low to High
+                    </SelectItem>
+                    <SelectItem value="price-desc">
+                      Price: High to Low
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
           </div>
 
+          {/* Product Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((item) => (
               <Card
@@ -139,7 +219,11 @@ export default function App() {
               >
                 <div className="relative w-full h-48">
                   <img
+<<<<<<< HEAD
+                    src={item.image_url}
+=======
                     src={`http://localhost:4000/farmer/${item.image_url}`}
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
                     alt={item.name}
                     className="rounded-t-xl w-full h-full object-cover"
                   />
@@ -150,10 +234,17 @@ export default function App() {
                     <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                       {item.name}
                     </CardTitle>
+<<<<<<< HEAD
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+                      Farmer: {item.farmer_name}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+=======
                     <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
                       Farmer: {item.farmer_name}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+>>>>>>> 1b307c67c71784ee966752a8b8b442119f6be6f5
                       ₹{item.price}
                     </p>
                   </div>

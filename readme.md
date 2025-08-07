@@ -47,9 +47,13 @@ and npm run dev
 
 ## 🏗️ Tech Stack
 
-| Layer       | Technology                        |
+| Layer       | Technology                       |
 |------------|-----------------------------------|
+<<<<<<< HEAD
 | Frontend   | Next.js + Tailwind CSS + Vite  |
+=======
+| Frontend   | Next.js + Tailwind CSS + Shadcn   |
+>>>>>>> 5748e46075827347808a7b6b64105f7f8376c1ca
 | Backend    | Node.js + Express.js              |
 | Database   | PostgreSQL                        |
 | Auth       | JWT (JSON Web Tokens)             |
@@ -74,10 +78,18 @@ farmfresh-ai/
 │   ├── uploads/                # Product images stored here
 │   └── server.js
 ├── frontend/
+<<<<<<< HEAD
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
 │   │   └── App.jsx
 │   ├── public/
 │   └── vite.config.js or next.config.js
+=======
+│   └── src/
+│       ├── components/
+│       ├── app/
+│       └── App.jsx
+├── uploads/
+>>>>>>> 5748e46075827347808a7b6b64105f7f8376c1ca
 ├── screenshots/

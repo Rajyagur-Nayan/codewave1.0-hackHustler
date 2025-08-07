@@ -70,6 +70,12 @@ const Navbar = () => {
           <Link href="/chat" className="hover:text-green-500 transition-colors">
             Chat
           </Link>
+          <Link
+            href="/dashboard"
+            className="hover:text-green-500 transition-colors"
+          >
+            Farmer-dashboard
+          </Link>
         </nav>
 
         {/* Action Buttons */}
@@ -142,6 +148,12 @@ const Navbar = () => {
           </Link>
           <Link href="/chat" className="block hover:text-green-500">
             Chat
+          </Link>
+          <Link
+            href="/dashboard"
+            className="hover:text-green-500 transition-colors"
+          >
+            Farmer-dashboard
           </Link>
 
           <div className="flex items-center space-x-3 mt-4">
