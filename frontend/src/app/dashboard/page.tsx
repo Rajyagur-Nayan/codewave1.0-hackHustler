@@ -77,36 +77,7 @@ export default function App() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="sticky top-0 z-50 bg-white dark:bg-gray-950 border-b dark:border-gray-800 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-            <div className="md:hidden flex items-center space-x-2">
-              <span className="text-2xl font-bold text-green-600 dark:text-green-400">🌱 logo</span>
-            </div>
-            <div className="flex-1 flex justify-center md:justify-start">
-              <div className="relative w-full max-w-md">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
-                <Input
-                  type="text"
-                  placeholder="Search for produce or farmers..."
-                  className="pl-9 pr-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
-                />
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="icon" className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <BellIcon className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <User className="h-5 w-5" />
-              </Button>
-              <Button onClick={toggleTheme} variant="ghost" size="icon" className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
-            </div>
-          </div>
-        </header>
-
+        
         {/* Dashboard Content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
           <h1 className="text-3xl font-bold mb-8">Farmer Dashboard Overview</h1>

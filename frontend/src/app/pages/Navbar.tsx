@@ -32,9 +32,16 @@ const Navbar = () => {
     }
   }, [isDarkMode]);
 
+<<<<<<< HEAD
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
+=======
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+  
+>>>>>>> 9ddc0abe6604eab04a1df87a8835cd493f83c89d
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md transition-colors duration-300">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -97,6 +104,7 @@ const Navbar = () => {
                 onClick={() => setIsRegisterDialogOpen(true)}
                 className="bg-green-600 text-white"
               >
+<<<<<<< HEAD
                 Register
               </Button>
             </>
@@ -145,6 +153,25 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center space-x-3 mt-4">
+=======
+                Marketplace
+              </a>
+              <a
+                href="/subscription"
+                className="hover:text-green-500 transition-colors"
+              >
+                Subscription
+              </a>
+              <a
+                href="/chat"
+                className="hover:text-green-500 transition-colors"
+              >
+                Chat
+              </a>
+            </nav>
+          </div>
+          <div className="flex items-center space-x-4">
+>>>>>>> 9ddc0abe6604eab04a1df87a8835cd493f83c89d
             <Button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800"
