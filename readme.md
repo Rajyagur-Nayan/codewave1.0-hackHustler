@@ -39,9 +39,9 @@ FarmFresh AI is a full-stack web platform that connects **farmers**, **buyers**,
 
 ## 🏗️ Tech Stack
 
-| Layer       | Technology                        |
+| Layer       | Technology                       |
 |------------|-----------------------------------|
-| Frontend   | React + Tailwind CSS + Vite       |
+| Frontend   | Next.js + Tailwind CSS + Shadcn   |
 | Backend    | Node.js + Express.js              |
 | Database   | PostgreSQL                        |
 | Auth       | JWT (JSON Web Tokens)             |
@@ -62,7 +62,7 @@ farmfresh-ai/
 ├── frontend/
 │   └── src/
 │       ├── components/
-│       ├── pages/
+│       ├── app/
 │       └── App.jsx
 ├── uploads/
 ├── screenshots/
