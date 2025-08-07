@@ -15,14 +15,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedToken = Cookies.get("login_token");
+    const storedToken = Cookies.get("farmfresh_token");
     if (storedToken) {
       setToken(storedToken);
     }
   }, []);
 
   const logout = () => {
-    Cookies.remove("login_token");
+    Cookies.remove("farmfresh_token");
     setToken(null);
   };
 

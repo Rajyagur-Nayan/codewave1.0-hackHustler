@@ -1,113 +1,133 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
-import { ShoppingCart, User, Search, Sun, Moon, Filter, Facebook, Instagram, Twitter } from 'lucide-react';
-// import Image from 'next/image'; // The Next.js Image component is removed to fix the compilation error.
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Filter } from "lucide-react";
 
-// Sample data for the produce items
-const produceData = [
-  {
-    id: 1,
-    name: "Heirloom Tomatoes",
-    farmer: "Green Valley Farm",
-    image: "https://placehold.co/600x400/e2e8f0/64748b?text=Tomatoes",
-  },
-  {
-    id: 2,
-    name: "Organic Kale",
-    farmer: "Sunny Meadow Organics",
-    image: "https://placehold.co/600x400/e2e8f0/64748b?text=Kale",
-  },
-  {
-    id: 3,
-    name: "Mixed Bell Peppers",
-    farmer: "Harvest Moon Growers",
-    image: "https://placehold.co/600x400/e2e8f0/64748b?text=Peppers",
-  },
-  {
-    id: 4,
-    name: "Fresh Strawberries",
-    farmer: "Berry Bliss Farms",
-    image: "https://placehold.co/600x400/e2e8f0/64748b?text=Strawberries",
-  },
-  {
-    id: 5,
-    name: "Organic Carrots",
-    farmer: "Rootsbound Ranch",
-    image: "https://placehold.co/600x400/e2e8f0/64748b?text=Carrots",
-  },
-  {
-    id: 6,
-    name: "Creamy Avocados",
-    farmer: "Avocado Acres",
-    image: "https://placehold.co/600x400/e2e8f0/64748b?text=Avocados",
-  },
-  {
-    id: 7,
-    name: "Broccoli Crowns",
-    farmer: "Farm-to-Fork Collective",
-    image: "https://placehold.co/600x400/e2e8f0/64748b?text=Broccoli",
-  },
-  {
-    id: 8,
-    name: "Sweet Blueberries",
-    farmer: "Blubird Berry Patch",
-    image: "https://placehold.co/600x400/e2e8f0/64748b?text=Blueberries",
-  },
-  {
-    id: 9,
-    name: "New Potatoes",
-    farmer: "Spud & Spread Farm",
-    image: "https://placehold.co/600x400/e2e8f0/64748b?text=Potatoes",
-  },
-];
-
+// Dummy categories and tags
 const categories = ["Fruits", "Vegetables", "Dairy", "Meats"];
 const tags = ["Top Selling", "Seasonal Picks"];
 
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  description: string;
+  stock: number;
+  image_url: string;
+  created_at: string;
+  farmer_name: string;
+}
+
+// Dummy fallback data
+const dummyProducts: Product[] = [
+  {
+    id: 1,
+    name: "Fresh Mangoes",
+    price: "120",
+    description: "Sweet Alphonso mangoes.",
+    stock: 50,
+    image_url: "https://source.unsplash.com/featured/?mango",
+    created_at: "2025-08-01T10:00:00Z",
+    farmer_name: "Amit Patel",
+  },
+  {
+    id: 2,
+    name: "Organic Spinach",
+    price: "40",
+    description: "Fresh pesticide-free spinach.",
+    stock: 100,
+    image_url: "https://source.unsplash.com/featured/?spinach",
+    created_at: "2025-08-02T11:30:00Z",
+    farmer_name: "Meera Singh",
+  },
+  {
+    id: 3,
+    name: "Farm Eggs (12 pcs)",
+    price: "90",
+    description: "Free-range eggs.",
+    stock: 75,
+    image_url: "https://source.unsplash.com/featured/?eggs",
+    created_at: "2025-08-03T14:45:00Z",
+    farmer_name: "Ravi Yadav",
+  },
+];
+
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [products, setProducts] = useState<Product[]>(dummyProducts);
 
-  // Toggle dark mode on/off for the entire page
+  // Dark mode logic
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [isDarkMode]);
 
-  const toggleTheme = () => {
-    setIsDarkMode(prev => !prev);
-  };
+  const toggleTheme = () => setIsDarkMode((prev) => !prev);
+
+  // Fetch real data
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get("http://localhost:4000/farmer/dashboard");
+        if (res.data && Array.isArray(res.data)) {
+          setProducts(res.data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch products, using dummy data", err);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      {/* Main Content Area */}
       <main className="flex flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
-        {/* Sidebar for Filters */}
+        {/* Sidebar */}
         <aside className="w-64 hidden lg:block pr-8 border-r dark:border-gray-800">
           <div className="space-y-6">
+            {/* Categories */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">CATEGORIES</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                CATEGORIES
+              </h3>
               <ul className="space-y-2">
                 {categories.map((category) => (
-                  <li key={category} className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors cursor-pointer">
+                  <li
+                    key={category}
+                    className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors cursor-pointer"
+                  >
                     <span className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-600"></span>
                     <span>{category}</span>
                   </li>
                 ))}
               </ul>
             </div>
+
+            {/* Tags */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">TAGS</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                TAGS
+              </h3>
               <ul className="space-y-2">
                 {tags.map((tag) => (
-                  <li key={tag} className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors cursor-pointer">
+                  <li
+                    key={tag}
+                    className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors cursor-pointer"
+                  >
                     <span className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-600"></span>
                     <span>{tag}</span>
                   </li>
@@ -117,39 +137,58 @@ export default function App() {
           </div>
         </aside>
 
-        {/* Product Grid */}
+        {/* Main Product Grid */}
         <div className="flex-1 lg:pl-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-0">
+          {/* Top Bar */}
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">
               Discover Fresh Produce
             </h1>
+
             <div className="flex items-center space-x-4">
-              <Button variant="outline" size="sm" className="lg:hidden flex items-center space-x-2 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:border-gray-700">
+              {/* Filter Button (Mobile Only) */}
+              <Button
+                variant="outline"
+                size="sm"
+                className="lg:hidden flex items-center space-x-2 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:border-gray-700"
+              >
                 <Filter className="h-4 w-4" />
                 <span>Filters</span>
               </Button>
+
+              {/* Sort Dropdown */}
               <div className="flex items-center space-x-2">
-                <span className="text-gray-700 dark:text-gray-300 text-sm">Sort by:</span>
+                <span className="text-gray-700 dark:text-gray-300 text-sm">
+                  Sort by:
+                </span>
                 <Select defaultValue="recommended">
                   <SelectTrigger className="w-[180px] dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700">
                     <SelectValue placeholder="Recommended" />
                   </SelectTrigger>
                   <SelectContent className="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700">
                     <SelectItem value="recommended">Recommended</SelectItem>
-                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                    <SelectItem value="price-asc">
+                      Price: Low to High
+                    </SelectItem>
+                    <SelectItem value="price-desc">
+                      Price: High to Low
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
           </div>
 
+          {/* Product Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {produceData.map((item) => (
-              <Card key={item.id} className="rounded-xl overflow-hidden shadow-lg dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
+            {products.map((item) => (
+              <Card
+                key={item.id}
+                className="rounded-xl overflow-hidden shadow-lg dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300"
+              >
                 <div className="relative w-full h-48">
                   <img
-                    src={item.image}
+                    src={item.image_url}
                     alt={item.name}
                     className="rounded-t-xl w-full h-full object-cover"
                   />
@@ -159,8 +198,11 @@ export default function App() {
                     <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                       {item.name}
                     </CardTitle>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                      Farmer: {item.farmer}
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+                      Farmer: {item.farmer_name}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                      ₹{item.price}
                     </p>
                   </div>
                   <Button className="w-full bg-green-600 hover:bg-green-700 text-white dark:bg-green-500 dark:hover:bg-green-600 transition-colors">
