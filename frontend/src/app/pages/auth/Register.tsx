@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,23 +11,40 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import toast from "react-hot-toast";
-
 import axios from "axios";
+import { header } from "framer-motion/client";
 
 export function RegisterDialog({ onClose }: any) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // default role
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState("farmer"); // default role
 
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
     try {
-      await axios.post("http://localhost:4000/signup", {
-        name,
-        email,
-        password,
-      });
+      await axios.post(
+        "http://localhost:4000/signup",
+        {
+          name,
+          email,
+          password,
+          role,
+          header: {
+            "Content-Type": "application/json",
+          },
+        },
+        {
+          withCredentials: true, // ✅ sends and receives cookies
+        }
+      );
       toast.success("Register Success");
     } catch (error) {
       console.log(error);
@@ -102,6 +120,24 @@ export function RegisterDialog({ onClose }: any) {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
+          </div>
+
+          {/* Role Dropdown */}
+          <div>
+            <Label htmlFor="role" className="text-gray-600">
+              Select Role
+            </Label>
+            <select
+              id="role"
+              className="mt-1 w-full border rounded px-3 py-2 dark:bg-gray-800 dark:text-white"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              required
+            >
+              <option value="farmer">Farmer</option>
+              <option value="consumer">Consumer</option>
+              <option value="admin">Admin</option>
+            </select>
           </div>
 
           <DialogFooter className="flex justify-end pt-4">

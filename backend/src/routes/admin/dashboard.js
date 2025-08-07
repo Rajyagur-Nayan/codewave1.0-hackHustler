@@ -1,57 +1,85 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../../db');
-const { isAdmin, isLoggedIn } = require('../../middleware/auth');
+const pool = require('../../connections/DB.connect');
+const { checkAdmin, checkFarmer, checkBuyer } = require('../../middelwear/roleCheck.js');
 
-// GET /api/admin/dashboard - Admin Panel Overview
-router.get('/', isLoggedIn, isAdmin, async (req, res) => {
-  try {
-    const [
-      totalUsers,
-      activeFarmers,
-      newRegistrations,
-      pendingApplications,
-      flaggedProducts,
-      recentActivity
-    ] = await Promise.all([
-      pool.query(`SELECT COUNT(*) FROM users`),
-      pool.query(`SELECT COUNT(*) FROM users WHERE role = 'farmer'`),
-      pool.query(`SELECT COUNT(*) FROM users WHERE created_at >= NOW() - INTERVAL '7 days'`),
-      pool.query(`
-        SELECT u.name AS applicant_name, fa.applied_at, fa.status
-        FROM farmer_applications fa
-        JOIN users u ON fa.user_id = u.id
-        WHERE fa.status = 'pending'
-        ORDER BY fa.applied_at DESC
-      `),
-      pool.query(`
-        SELECT p.name AS product_name, u.name AS farmer_name, p.flag_reason
-        FROM products p
-        JOIN users u ON p.farmer_id = u.id
-        WHERE p.is_flagged = TRUE
-        ORDER BY p.created_at DESC
-      `),
-      pool.query(`
-        SELECT message, log_type, logged_at
-        FROM admin_logs
-        ORDER BY logged_at DESC
-        LIMIT 10
-      `)
-    ]);
+// Admin Overview Stats
+router.get('/dashboard-overview', checkAdmin, async (req, res) => {
+    try {
+        const [totalUsers, totalFarmers, recentRegistrations] = await Promise.all([
+            pool.query("SELECT COUNT(*) FROM users"),
+            pool.query("SELECT COUNT(*) FROM users WHERE role = 'farmer'"),
+            pool.query("SELECT COUNT(*) FROM users WHERE created_at >= NOW() - INTERVAL '7 days'")
+        ]);
 
-    res.status(200).json({
-      total_active_users: Number(totalUsers.rows[0].count),
-      active_farmers: Number(activeFarmers.rows[0].count),
-      new_registrations_7_days: Number(newRegistrations.rows[0].count),
-      pending_farmer_applications: pendingApplications.rows,
-      flagged_products: flaggedProducts.rows,
-      recent_system_activity: recentActivity.rows,
-      system_uptime: '99.9%' // placeholder — use monitoring tool for real uptime
-    });
-  } catch (err) {
-    console.error('Error loading admin dashboard:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+        res.json({
+            total_users: parseInt(totalUsers.rows[0].count),
+            active_farmers: parseInt(totalFarmers.rows[0].count),
+            new_registrations_7_days: parseInt(recentRegistrations.rows[0].count),
+            system_uptime: '99.9%' // Static (or use external uptime API/service)
+        });
+    } catch (err) {
+        console.error('Dashboard Error:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Pending Farmer Applications
+router.get('/farmer-applications', checkAdmin, async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT fa.id, u.name AS applicant_name, fa.applied_at, fa.status
+            FROM farmer_applications fa
+            JOIN users u ON fa.user_id = u.id
+            WHERE fa.status = 'pending'
+            ORDER BY fa.applied_at DESC
+        `);
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Farmer applications fetch error:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
+// Flagged Product Listings (manually flagged entries)
+router.get('/product-flags', checkAdmin, async (req, res) => {
+    try {
+        // Simulated logic; you may use a separate 'flags' table in real implementation
+        const flagged = await pool.query(`
+            SELECT p.id, p.name AS product_name, u.name AS farmer, 'Quality Concern' AS reason
+            FROM products p
+            JOIN users u ON p.farmer_id = u.id
+            WHERE p.name ILIKE '%tomato%' -- example flag condition
+            UNION
+            SELECT p.id, p.name AS product_name, u.name AS farmer, 'Misleading Description' AS reason
+            FROM products p
+            JOIN users u ON p.farmer_id = u.id
+            WHERE p.description ILIKE '%fake%' -- another example
+        `);
+
+        res.json(flagged.rows);
+    } catch (err) {
+        console.error('Flag fetch error:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Recent System Activity (from admin_logs)
+router.get('/system-activity', checkAdmin, async (req, res) => {
+    try {
+        const logs = await pool.query(`
+            SELECT message, log_type, logged_at
+            FROM admin_logs
+            ORDER BY logged_at DESC
+            LIMIT 10
+        `);
+        res.json(logs.rows);
+    } catch (err) {
+        console.error('System logs error:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 module.exports = router;

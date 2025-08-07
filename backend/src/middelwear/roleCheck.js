@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const pool = require('../connections/DB.connect.js');
 
+
 const verifyRole = (requiredRole) => {
     return async (req, res, next) => {
         try {
