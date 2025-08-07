@@ -11,15 +11,12 @@ CREATE TABLE users (
 -- 2. PRODUCTS (Listed by Farmers)
 CREATE TABLE products (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    farmer_id UUID REFERENCES users(id) ON DELETE CASCADE,
-    name VARCHAR(100) NOT NULL,
-    category VARCHAR(50),
-    price NUMERIC(10, 2) NOT NULL,
-    stock INTEGER NOT NULL,
+    farmer_id UUID REFERENCES users(id),
+    name TEXT NOT NULL,
+    price NUMERIC(10,2) NOT NULL,
     description TEXT,
+    quantity_in_stock INTEGER NOT NULL,
     image_url TEXT,
-    is_flagged BOOLEAN DEFAULT FALSE,
-    flag_reason TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

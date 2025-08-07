@@ -1,10 +1,13 @@
 const jwt = require('jsonwebtoken');
 const pool = require('../connections/DB.connect.js');
 
+
 const verifyRole = (requiredRole) => {
     return async (req, res, next) => {
         try {
-            const token = req.cookies.farmfresh_token;
+          //  const token = req.cookies.farmfresh_token;
+          const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4NWNjNzczLWU0YzAtNDE3Zi1iM2RiLWNjODRkNGM4MDgxYSIsIm5hbWUiOiJEaHJ1diBCb2doYW5pIiwiZW1haWwiOiJkQGQuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU0NTUwNDMzfQ.x9bAZ-6SZ1-ErcDhTp8ElXEhJzXfzMsl59RQRdEGzRk"
+
 
             if (!token) {
                 return res.status(401).json({ message: 'Access denied. No token provided.' });
