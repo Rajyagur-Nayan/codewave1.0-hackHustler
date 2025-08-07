@@ -73,3 +73,16 @@ CREATE TABLE admin_logs (
     log_type VARCHAR(30),
     logged_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- 8. LOCATION FORM SUBMISSIONS
+CREATE TABLE location_forms (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    email VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    location TEXT NOT NULL,
+    description TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+

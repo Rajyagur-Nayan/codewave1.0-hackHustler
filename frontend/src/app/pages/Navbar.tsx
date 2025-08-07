@@ -65,7 +65,7 @@ const Navbar = () => {
             href="/subscription"
             className="hover:text-green-500 transition-colors"
           >
-            Subscribe
+            Subscription
           </Link>
           <Link href="/chat" className="hover:text-green-500 transition-colors">
             Chat
