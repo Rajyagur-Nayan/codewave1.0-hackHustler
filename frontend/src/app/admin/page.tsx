@@ -230,24 +230,25 @@ export default function App() {
             Admin Dashboard Overview
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {adminData.overview.map((item, index) => (
-              <Card
-                key={index}
-                className="rounded-xl p-4 bg-white dark:bg-gray-800 shadow-lg border dark:border-gray-700"
-              >
-                <CardContent className="flex items-center justify-between p-0">
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {item.title}
-                    </p>
-                    <p className="text-3xl font-bold mt-1">{item.value}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                      {item.description}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {adminData &&
+              adminData.overview.map((item, index) => (
+                <Card
+                  key={index}
+                  className="rounded-xl p-4 bg-white dark:bg-gray-800 shadow-lg border dark:border-gray-700"
+                >
+                  <CardContent className="flex items-center justify-between p-0">
+                    <div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {item.title}
+                      </p>
+                      <p className="text-3xl font-bold mt-1">{item.value}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        {item.description}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
           </div>
 
           <h2 className="text-xl font-semibold mb-4">Pending Approvals</h2>

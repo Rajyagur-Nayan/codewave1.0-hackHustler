@@ -33,7 +33,7 @@ router.post('/add', checkFarmer, upload.single('image'), async (req, res) => {
 
         const result = await pool.query(
             `INSERT INTO products (farmer_id, name, price, description, stock, image_url)
-             VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
+            VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
             [farmer_id, name, price, description, quantity, image_url]
         );
 
