@@ -1,25 +1,33 @@
 # 🌾 FarmFresh AI - Smart Agriculture Platform
 
-FarmFresh AI is a full-stack web platform that connects **farmers**, **buyers**, and **admins** to trade fresh farm produce efficiently using AI-powered features. Built with **React**, **Express**, **PostgreSQL**, and **JWT authentication**.
+FarmFresh AI is a **full-stack agriculture platform** built with modern web technologies. It connects **farmers**, **buyers**, and **admins** to trade fresh produce efficiently using AI-powered features, secure authentication, and easy-to-use interfaces.
 
 ---
+### 📁 Clone the Project
 
+```bash
+git clone https://github.com/your-username/farmfresh-ai.git
+cd farmfresh-ai 
+cd frontend
+cd backend
+now in both npm install
+and npm run dev 
 ## 🚀 Features
 
 ### 👨‍🌾 For Farmers:
-- Add, edit, delete products with images
-- Track stock and availability
-- Secure login and signup
+- Add, edit, and delete products with image uploads
+- View and manage product listings
+- Secure registration and login
 
 ### 🛒 For Buyers:
-- Browse available farm products
-- View product details with image and price
-- Purchase from trusted farmers
+- Browse available farm products with image, price, and quantity
+- View detailed product information
+- Easy-to-navigate product listing
 
-### 🛠️ Admin Panel:
-- Manage user roles (farmer/buyer)
-- Approve or remove products
-- View site analytics (future feature)
+### 🛠️ Admin Panel (Coming Soon):
+- Approve or reject farmer products
+- Manage users (farmers/buyers)
+- Platform analytics (planned)
 
 ---
 
@@ -41,29 +49,35 @@ FarmFresh AI is a full-stack web platform that connects **farmers**, **buyers**,
 
 | Layer       | Technology                        |
 |------------|-----------------------------------|
-| Frontend   | React + Tailwind CSS + Vite       |
+| Frontend   | Next.js + Tailwind CSS + Vite  |
 | Backend    | Node.js + Express.js              |
 | Database   | PostgreSQL                        |
 | Auth       | JWT (JSON Web Tokens)             |
-| Storage    | Multer (for images), Local upload |
-| Deployment | Localhost (for now)               |
+| Image Upload | Multer (stored locally in `uploads/`) |
+| Dev Tools  | Nodemon, Postman                  |
+| Deployment | Currently local (future: Render / Vercel) |
 
 ---
 
-## 📁 Folder Structure
+## 🧩 Folder Structure
 
 ```bash
 farmfresh-ai/
 ├── backend/
 │   ├── src/
 │   │   ├── routes/
+│   │   │   ├── auth/
+│   │   │   ├── buyer/
+│   │   │   └── farmer/
 │   │   └── middleware/
-│   └── connections/
+│   ├── connections/
+│   ├── uploads/                # Product images stored here
+│   └── server.js
 ├── frontend/
-│   └── src/
-│       ├── components/
-│       ├── pages/
-│       └── App.jsx
-├── uploads/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── App.jsx
+│   ├── public/
+│   └── vite.config.js or next.config.js
 ├── screenshots/
-├── README.md
