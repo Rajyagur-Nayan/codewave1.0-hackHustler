@@ -30,6 +30,7 @@ app.use("/chat", require("./src/routes/chat/chat.js"));
 app.use("/admin", require("./src/routes/admin/dashboard.js"));
 app.use("/chat", require("./src/routes/chatgemini/chat.js"));
 app.use("/farmer/category", require("./src/routes/farmer/category.js"));
-app.use("/profile", require("./src/routes/profile/profile.js"))
+app.use("/profile", require("./src/routes/profile/profile.js"));
+app.use("/farmer/dashboard", require("./src/routes/farmer/deshbord.js"));
 
 module.exports = app;
