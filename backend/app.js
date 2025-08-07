@@ -27,6 +27,7 @@ app.use("/signup", require("./src/routes/user/signup.js"));
 app.use("/login", require("./src/routes/user/login.js"));
 app.use("/farmer", require("./src/routes/farmer/form.js"));
 app.use("/chat", require("./src/routes/chat/chat.js"));
-app.use("/admin", require("./src/routes/admin/dashboard.js"))
+app.use("/admin", require("./src/routes/admin/dashboard.js"));
+app.use("/chat", require("./src/routes/chatgemini/chat.js"));
 
 module.exports = app;
