@@ -62,7 +62,7 @@ const Navbar = () => {
             Marketplace
           </Link>
           <Link
-            href="/subscribe"
+            href="/subscription"
             className="hover:text-green-500 transition-colors"
           >
             Subscribe

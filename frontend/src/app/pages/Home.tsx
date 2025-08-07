@@ -432,7 +432,7 @@ const Home = () => {
             locally-sourced produce boxes delivered right to your door.
           </p>
           <Link
-            href="/farmer-dashboard"
+            href="/dashboard"
             type="button"
             className="px-8 py-3 bg-white text-green-500 rounded-full font-semibold hover:bg-gray-100 transition-colors"
           >
