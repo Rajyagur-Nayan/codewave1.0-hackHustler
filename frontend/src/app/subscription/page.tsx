@@ -36,46 +36,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white dark:bg-gray-950 border-b dark:border-gray-800 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-green-600 dark:text-green-400">🌱 logo</span>
-          </div>
-          <div className="flex items-center space-x-6">
-            <nav className="hidden md:flex space-x-6">
-              <a href="#" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">
-                Marketplace
-              </a>
-              <a href="#" className="text-sm font-medium text-green-600 dark:text-green-400 border-b-2 border-green-600 dark:border-green-400 transition-colors">
-                Subscribe
-              </a>
-              <a href="#" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">
-                Chat
-              </a>
-            </nav>
-            <div className="flex items-center space-x-4">
-              <div className="relative hidden lg:block">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
-                <Input
-                  type="text"
-                  placeholder="Search for produce or farmers..."
-                  className="pl-9 pr-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 w-64"
-                />
-              </div>
-              <Button variant="ghost" size="icon" className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <ShoppingCart className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <User className="h-5 w-5" />
-              </Button>
-              <Button onClick={toggleTheme} variant="ghost" size="icon" className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8">
@@ -216,28 +176,6 @@ export default function App() {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-900 border-t dark:border-gray-800 mt-auto py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600 dark:text-gray-400">
-          <div className="flex space-x-4 mb-2 sm:mb-0">
-            <a href="#" className="hover:text-green-600 dark:hover:text-green-400">Company</a>
-            <a href="#" className="hover:text-green-600 dark:hover:text-green-400">Support</a>
-            <a href="#" className="hover:text-green-600 dark:hover:text-green-400">Legal</a>
-          </div>
-          <div className="flex space-x-4">
-            <a href="#" className="hover:text-green-600 dark:hover:text-green-400">
-              <Facebook className="h-5 w-5" />
-            </a>
-            <a href="#" className="hover:text-green-600 dark:hover:text-green-400">
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a href="#" className="hover:text-green-600 dark:hover:text-green-400">
-              <Twitter className="h-5 w-5" />
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

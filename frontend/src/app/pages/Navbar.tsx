@@ -29,7 +29,7 @@ const Navbar = () => {
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
   };
-
+  
   return (
     <div>
       <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md transition-colors duration-300">
@@ -56,10 +56,10 @@ const Navbar = () => {
                 Marketplace
               </a>
               <a
-                href="/subscribe"
+                href="/subscription"
                 className="hover:text-green-500 transition-colors"
               >
-                Subscribe
+                Subscription
               </a>
               <a
                 href="/chat"
