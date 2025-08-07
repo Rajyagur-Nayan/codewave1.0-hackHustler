@@ -6,7 +6,7 @@ FarmFresh AI is a **full-stack agriculture platform** built with modern web tech
 ### 📁 Clone the Project
 
 ```bash
-git clone https://github.com/your-username/farmfresh-ai.git
+git clone https://github.com/Rajyagur-Nayan/codewave1.0-hackHustler.git
 cd farmfresh-ai 
 cd frontend
 cd backend
