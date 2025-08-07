@@ -1,17 +1,22 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { ShoppingCart, User, Search, Sun, Moon, Facebook, Instagram, Twitter } from 'lucide-react';
-import Image from 'next/image';
+import { useState, useEffect } from "react";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
-const allergies = ["Peanuts", "Tree Nuts", "Dairy", "Soy", "Wheat", "Shellfish"];
+const allergies = [
+  "Peanuts",
+  "Tree Nuts",
+  "Dairy",
+  "Soy",
+  "Wheat",
+  "Shellfish",
+];
 const subscriptionPlans = [
   { value: "weekly", label: "Weekly", price: "$49", details: "" },
   { value: "bi-weekly", label: "Bi-Weekly", price: "$45", details: "per box" },
@@ -24,52 +29,90 @@ export default function App() {
   // Toggle dark mode on/off for the entire page
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [isDarkMode]);
 
   const toggleTheme = () => {
-    setIsDarkMode(prev => !prev);
+    setIsDarkMode((prev) => !prev);
   };
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
-
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8">
-        <h1 className="text-3xl font-bold mb-8 text-center">Customize Your Subscription Box</h1>
+        <h1 className="text-3xl font-bold mb-8 text-center">
+          Customize Your Subscription Box
+        </h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Your Preferences & Preview Section */}
           <div className="lg:col-span-2 space-y-8">
             {/* Your Preferences */}
             <Card className="rounded-xl p-6 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-              <CardTitle className="text-2xl font-semibold mb-2">Your Preferences</CardTitle>
+              <CardTitle className="text-2xl font-semibold mb-2">
+                Your Preferences
+              </CardTitle>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
-                Help us customize your perfect box by telling us about your tastes.
+                Help us customize your perfect box by telling us about your
+                tastes.
               </p>
               <div className="space-y-6">
                 <div>
-                  <Label htmlFor="dietary" className="text-sm font-medium">Dietary Needs <span className="text-gray-500 dark:text-gray-400 text-xs">(e.g., Vegetarian, Vegan, Gluten-Free)</span></Label>
-                  <Input id="dietary" placeholder="Specify your dietary preferences" className="mt-2 dark:bg-gray-700 dark:border-gray-600" />
+                  <Label htmlFor="dietary" className="text-sm font-medium">
+                    Dietary Needs{" "}
+                    <span className="text-gray-500 dark:text-gray-400 text-xs">
+                      (e.g., Vegetarian, Vegan, Gluten-Free)
+                    </span>
+                  </Label>
+                  <Input
+                    id="dietary"
+                    placeholder="Specify your dietary preferences"
+                    className="mt-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
                 </div>
                 <div>
-                  <Label htmlFor="love" className="text-sm font-medium">Produce I Love <span className="text-gray-500 dark:text-gray-400 text-xs">(e.g., berries, spinach, avocados)</span></Label>
-                  <Textarea id="love" placeholder="List your favorite fruits and vegetables" className="mt-2 dark:bg-gray-700 dark:border-gray-600" />
+                  <Label htmlFor="love" className="text-sm font-medium">
+                    Produce I Love{" "}
+                    <span className="text-gray-500 dark:text-gray-400 text-xs">
+                      (e.g., berries, spinach, avocados)
+                    </span>
+                  </Label>
+                  <Textarea
+                    id="love"
+                    placeholder="List your favorite fruits and vegetables"
+                    className="mt-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
                 </div>
                 <div>
-                  <Label htmlFor="dislike" className="text-sm font-medium">Produce I Dislike <span className="text-gray-500 dark:text-gray-400 text-xs">(e.g., mushrooms, cilantro, okra)</span></Label>
-                  <Textarea id="dislike" placeholder="List anything you prefer not to receive" className="mt-2 dark:bg-gray-700 dark:border-gray-600" />
+                  <Label htmlFor="dislike" className="text-sm font-medium">
+                    Produce I Dislike{" "}
+                    <span className="text-gray-500 dark:text-gray-400 text-xs">
+                      (e.g., mushrooms, cilantro, okra)
+                    </span>
+                  </Label>
+                  <Textarea
+                    id="dislike"
+                    placeholder="List anything you prefer not to receive"
+                    className="mt-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
                 </div>
                 <div>
-                  <Label className="text-sm font-medium block mb-3">Allergies</Label>
+                  <Label className="text-sm font-medium block mb-3">
+                    Allergies
+                  </Label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     {allergies.map((allergy) => (
-                      <div key={allergy} className="flex items-center space-x-2">
+                      <div
+                        key={allergy}
+                        className="flex items-center space-x-2"
+                      >
                         <Checkbox id={allergy} />
-                        <Label htmlFor={allergy} className="text-sm">{allergy}</Label>
+                        <Label htmlFor={allergy} className="text-sm">
+                          {allergy}
+                        </Label>
                       </div>
                     ))}
                   </div>
@@ -82,8 +125,12 @@ export default function App() {
 
             {/* Your Personalized Box Preview */}
             <Card className="rounded-xl p-6 bg-green-50 dark:bg-green-950 dark:text-gray-50 shadow-lg border border-green-200 dark:border-green-900">
-              <CardTitle className="text-2xl font-semibold mb-4">Your Personalized Box Preview</CardTitle>
-              <p className="text-sm text-green-800 dark:text-green-300 mb-6">A taste of what our AI recommends just for you.</p>
+              <CardTitle className="text-2xl font-semibold mb-4">
+                Your Personalized Box Preview
+              </CardTitle>
+              <p className="text-sm text-green-800 dark:text-green-300 mb-6">
+                A taste of what our AI recommends just for you.
+              </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="relative w-full h-auto">
                   <img
@@ -126,11 +173,20 @@ export default function App() {
           <div className="space-y-8">
             {/* AI Assistant Suggestions */}
             <Card className="rounded-xl p-6 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-              <CardTitle className="text-xl font-semibold mb-4">AI Assistant Suggestions</CardTitle>
+              <CardTitle className="text-xl font-semibold mb-4">
+                AI Assistant Suggestions
+              </CardTitle>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                Our AI is constantly learning your preferences to recommend the freshest, most suitable produce, even suggesting new seasonal items to diversify your box!
+                Our AI is constantly learning your preferences to recommend the
+                freshest, most suitable produce, even suggesting new seasonal
+                items to diversify your box!
               </p>
-              <a href="#" className="text-green-600 dark:text-green-400 text-sm font-medium hover:underline">Explore Marketplace</a>
+              <a
+                href="#"
+                className="text-green-600 dark:text-green-400 text-sm font-medium hover:underline"
+              >
+                Explore Marketplace
+              </a>
             </Card>
 
             {/* AI Chat Bubble */}
@@ -143,27 +199,46 @@ export default function App() {
                 />
               </div>
               <div className="relative bg-gray-100 dark:bg-gray-700 p-4 rounded-xl rounded-tl-none max-w-[80%]">
-                <p className="text-sm">Looking forward to your next subscription box!</p>
+                <p className="text-sm">
+                  Looking forward to your next subscription box!
+                </p>
               </div>
             </div>
 
             {/* Choose Your Frequency */}
             <Card className="rounded-xl p-6 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-              <CardTitle className="text-xl font-semibold mb-4">Choose Your Frequency</CardTitle>
+              <CardTitle className="text-xl font-semibold mb-4">
+                Choose Your Frequency
+              </CardTitle>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
                 Select how often you'd like to receive your fresh produce box.
               </p>
               <RadioGroup defaultValue="weekly" className="space-y-4">
-                {subscriptionPlans.map(plan => (
+                {subscriptionPlans.map((plan) => (
                   <div key={plan.value} className="flex items-center space-x-2">
-                    <RadioGroupItem value={plan.value} id={plan.value} className="peer hidden" />
-                    <Label htmlFor={plan.value} className="flex items-center justify-between w-full p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 cursor-pointer peer-data-[state=checked]:border-green-600 dark:peer-data-[state=checked]:border-green-400 transition-colors">
+                    <RadioGroupItem
+                      value={plan.value}
+                      id={plan.value}
+                      className="peer hidden"
+                    />
+                    <Label
+                      htmlFor={plan.value}
+                      className="flex items-center justify-between w-full p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 cursor-pointer peer-data-[state=checked]:border-green-600 dark:peer-data-[state=checked]:border-green-400 transition-colors"
+                    >
                       <div>
-                        <span className="block font-medium text-lg text-gray-900 dark:text-gray-100">{plan.label}</span>
+                        <span className="block font-medium text-lg text-gray-900 dark:text-gray-100">
+                          {plan.label}
+                        </span>
                       </div>
                       <div className="text-right">
-                        <span className="block font-bold text-lg text-gray-900 dark:text-gray-100">{plan.price}</span>
-                        {plan.details && <span className="block text-sm text-gray-500 dark:text-gray-400">{plan.details}</span>}
+                        <span className="block font-bold text-lg text-gray-900 dark:text-gray-100">
+                          {plan.price}
+                        </span>
+                        {plan.details && (
+                          <span className="block text-sm text-gray-500 dark:text-gray-400">
+                            {plan.details}
+                          </span>
+                        )}
                       </div>
                     </Label>
                   </div>
