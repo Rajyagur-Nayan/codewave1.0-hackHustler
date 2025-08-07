@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/templates', express.static(path.join(__dirname, 'templates')));
-app.use('/uploads/products', express.static(path.join(__dirname, 'uploads')));
+app.use('/farmer/uploads/products', express.static(path.join(__dirname, 'uploads/products')));
 
 // routes
 app.get("/", (req, res) => {
